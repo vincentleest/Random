@@ -1,0 +1,4 @@
+*.swp
+*.c.swp
+*.o
+a.out
