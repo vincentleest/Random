@@ -1,0 +1,17 @@
+Ask about ASCII / UNICODE string
+
+Can optimize by returning false when strlen is greater than number 
+of unique characters. 
+
+Coded a O(n^2) solution.
+
+
+Optimal:
+Since already to a range. Should use bitset, and check duplicate from there. 
+Time: O(n) solution 
+Space: O(1) solution 
+
+Others: 
+if can modify the string Sort and compare neighboring chars. O(nlog(n))
+
+

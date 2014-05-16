@@ -1,0 +1,3 @@
+Swappnig from 1 -> end will reverse the effect. 
+
+use &str[i] to pass in pointer to a charater of a C-string
