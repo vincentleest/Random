@@ -2,3 +2,4 @@
 *.c.swp
 *.o
 a.out
+.DS_Store
