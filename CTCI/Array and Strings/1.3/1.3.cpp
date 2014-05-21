@@ -8,11 +8,11 @@
 using namespace std;
 
 bool if_permutate(string a, string b){
-	if( a.length() != b.length())
+	if(a.length() != b.length())
 		return false;
 	
-	std::sort( a.begin(), a.end());
-	std::sort( b.begin(), b.end());
+	std::sort(a.begin(), a.end());
+	std::sort(b.begin(), b.end());
 
 	if( a.compare(b) == 0)	
 		return true;
