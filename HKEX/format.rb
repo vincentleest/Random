@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-puts "working on" + ARGV[0]
+puts "working on " + ARGV[0]
 
 fh = File.readlines(ARGV[0] + '.txt')
 index_name = fh.first
