@@ -7,7 +7,7 @@ NOW=$(date +"%F")
 
 cd $SCRIPT_ROOT
 echo "Fetching Data"
-lynx -dump http://www.hkex.com.hk/eng/ddp/Contract_Details.asp?PId=2 | sed -e '1,21d' -e 's/[ \t]*//' > HSI.txt
+lynx -dump http://www.hkex.com.hk/eng/ddp/contract_Details.asp?PId=2 | sed -e '1,21d' -e 's/[ \t]*//' > HSI.txt
 lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=6 | sed -e '1,21d' -e 's/[ \t]*//' > HHI.txt
 lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=117 | sed -e '1,21d' -e 's/[ \t]*//' > HKB.txt
 lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=157 | sed -e '1,21d' -e 's/[ \t]*//' > TCH.txt
