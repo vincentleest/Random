@@ -26,27 +26,27 @@ echo "Data Fetch Completed"
 echo "Finisehd Formatting"
 
 echo "Uploading files"
+TODAY=$(date +"%y%m%d")
 #moving files around
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader mkdir "$NOW" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HHI.csv" "$NOW/HHI.csv" 
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HHI.csv" "$NOW/HHI$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HSI.csv" "$NOW/HSI.csv" 
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HSI.csv" "$NOW/HSI$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HKB.csv" "$NOW/HKB.csv" 
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HKB.csv" "$NOW/HKB$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/TCH.csv" "$NOW/TCH.csv" 
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/TCH.csv" "$NOW/TCH$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HEX.csv" "$NOW/HEX.csv" 
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HEX.csv" "$NOW/HEX$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/CHT.csv" "$NOW/CHT.csv" 
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/CHT.csv" "$NOW/CHT$TODAY.csv" 
 
 echo "Upload completed, cleaning up"
 rm *.csv
 rm *.txt
 
 
-TODAY=$(date +"%y%m%d")
 wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsif$TODAY.zip"
 wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsio$TODAY.zip"
 wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hhif$TODAY.zip"
