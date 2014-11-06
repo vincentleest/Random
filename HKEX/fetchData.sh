@@ -44,15 +44,18 @@ $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/CHT.cs
 
 echo "Upload completed, cleaning up"
 rm *.csv
-rm *.txt
 
+mkdir "archive$TODAY"
+mv *.txt "archive$TODAY/"
+zip -r "archive$TODAY.zip" "archive$TODAY"
+rm -r "archive$TODAY/"
 
-wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsif$TODAY.zip"
-wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsio$TODAY.zip"
-wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hhif$TODAY.zip"
-wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hhio$TODAY.zip"
-wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/stock$TODAY.zip"
-wget "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/dqe$TODAY.zip"
+wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsif$TODAY.zip"
+wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsio$TODAY.zip"
+wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hhif$TODAY.zip"
+wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hhio$TODAY.zip"
+wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/stock$TODAY.zip"
+wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/dqe$TODAY.zip"
 
 
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hsif$TODAY.zip" "$NOW/"
@@ -61,5 +64,6 @@ $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hhif$
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hhio$TODAY.zip" "$NOW/"
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/stock$TODAY.zip" "$NOW/"
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/dqe$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/archive$TODAY.zip" "$NOW/"
 
 rm *.zip
