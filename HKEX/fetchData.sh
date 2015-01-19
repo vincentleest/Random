@@ -13,7 +13,7 @@ lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=117 | sed -e 
 lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=157 | sed -e '1,21d' -e 's/[ \t]*//' > TCH.txt
 lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=82 | sed -e '1,21d' -e 's/[ \t]*//' > HEX.txt
 lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=63 | sed -e '1,21d' -e 's/[ \t]*//' > CHT.txt
-lynx -dump http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=237 | sed -e '1,21d' -e 's/[ \t]*//' > XCC.txt
+lynx -dump -width=100 http://www.hkex.com.hk/eng/ddp/contract_details.asp?pid=237 | sed -e '1,21d' -e 's/[ \t]*//' > XCC.txt
 
 echo "Data Fetch Completed"
 
