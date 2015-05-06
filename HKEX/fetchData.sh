@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPT_ROOT="/home/vincent/workspace/Random/HKEX/"
+SCRIPT_ROOT="$HOME/workspace/Random/HKEX/"
 DROPBOX_UPLOADER="$SCRIPT_ROOT/dropbox_uploader.sh"
 
 NOW=$(date +"%F")
@@ -31,21 +31,21 @@ echo "Finisehd Formatting"
 echo "Uploading files"
 TODAY=$(date +"%y%m%d")
 #moving files around
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader mkdir "$NOW" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" mkdir $NOW 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HHI.csv" "$NOW/HHI$TODAY.csv" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HHI.csv" "$NOW/HHI$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HSI.csv" "$NOW/HSI$TODAY.csv" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HSI.csv" "$NOW/HSI$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HKB.csv" "$NOW/HKB$TODAY.csv" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HKB.csv" "$NOW/HKB$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/TCH.csv" "$NOW/TCH$TODAY.csv" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/TCH.csv" "$NOW/TCH$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/HEX.csv" "$NOW/HEX$TODAY.csv" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HEX.csv" "$NOW/HEX$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/CHT.csv" "$NOW/CHT$TODAY.csv" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/CHT.csv" "$NOW/CHT$TODAY.csv" 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload "$SCRIPT_ROOT/XCC.csv" "$NOW/XCC$TODAY.csv" 
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/XCC.csv" "$NOW/XCC$TODAY.csv" 
 
 echo "Upload completed, cleaning up"
 rm *.csv
@@ -65,14 +65,14 @@ wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/
 
 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hsif$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hsio$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hhif$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hhio$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/stock$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/dqe$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/archive$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/HSI_$HSI_DATE.xls" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/hsif$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/hsio$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/hhif$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/hhio$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/stock$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/dqe$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/archive$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload  "$SCRIPT_ROOT/HSI_$HSI_DATE.xls" "$NOW/"
 
 rm *.zip
 rm *.xls
