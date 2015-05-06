@@ -62,7 +62,7 @@ wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hhio$TODAY.zip"
 wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/stock$TODAY.zip"
 wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/dqe$TODAY.zip"
 wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/HSI_$HSI_DATE.xls"
-
+wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hscei/HSCEI_$HSI_DATE.xls"
 
 
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hsif$TODAY.zip" "$NOW/"
@@ -72,7 +72,9 @@ $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hhio$
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/stock$TODAY.zip" "$NOW/"
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/dqe$TODAY.zip" "$NOW/"
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/archive$TODAY.zip" "$NOW/"
+
 $DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/HSI_$HSI_DATE.xls" "$NOW/"
+$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/HSCEI_$HSI_DATE.xls" "$NOW/"
 
 rm *.zip
 rm *.xls
