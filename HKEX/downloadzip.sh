@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPT_ROOT="/home/vincent/workspace/Random/HKEX/"
+SCRIPT_ROOT="$HOME/workspace/Random/HKEX/"
 DROPBOX_UPLOADER="$SCRIPT_ROOT/dropbox_uploader.sh"
 
 
@@ -18,11 +18,11 @@ wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/stock$TODAY.zip"
 wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/dqe$TODAY.zip"
 
 
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hsif$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hsio$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hhif$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/hhio$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/stock$TODAY.zip" "$NOW/"
-$DROPBOX_UPLOADER -f /home/vincent/.dropbox_uploader upload  "$SCRIPT_ROOT/dqe$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader upload"  "$SCRIPT_ROOT/hsif$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader upload"  "$SCRIPT_ROOT/hsio$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader upload"  "$SCRIPT_ROOT/hhif$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader upload"  "$SCRIPT_ROOT/hhio$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader upload"  "$SCRIPT_ROOT/stock$TODAY.zip" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader upload"  "$SCRIPT_ROOT/dqe$TODAY.zip" "$NOW/"
 
 rm *.zip
