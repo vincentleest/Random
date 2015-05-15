@@ -52,10 +52,12 @@ done
 
 wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/HSI_$HSI_DATE.xls"
 wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hscei/HSCEI_$HSI_DATE.xls"
+wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/Index_Performance_Summary_$HSI_DATE.xls"
 
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/archive$TODAY.zip" "$NOW/"
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HSI_$HSI_DATE.xls" "$NOW/"
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HSCEI_$HSI_DATE.xls" "$NOW/"
+$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/Index_Performance_Summary_$HSI_DATE.xls" "$NOW/"
 
 rm *.zip
 rm *.xls
