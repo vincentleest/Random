@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SCRIPT_ROOT="$HOME/workspace/Random/HKEX/"
 DROPBOX_UPLOADER="$SCRIPT_ROOT/dropbox_uploader.sh"
