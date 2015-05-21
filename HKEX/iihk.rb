@@ -13,6 +13,16 @@ def new_workbook?
 	Date.today == first_monday
 end
 
+def upload_file(file_name)
+	home = ENV['HOME']
+	system "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' upload '#{home}/workspace/Random/HKEX/#{file_name}' '/#{file_name}'"
+end
+
+def download_file(file_name)
+	home = ENV['HOME']
+	system "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' download '#{file_name}' '#{home}/workspace/Random/HKEX/#{file_name}'"
+end
+
 def get_option_data(name)
 	puts "Getting #{name} Option data"
 	option_date = Date.today.strftime("%y%m%d")
@@ -24,9 +34,13 @@ def get_option_data(name)
 	res.body
 end
 
+def option_xlsx_filename(option)
+	"OptionStatus-#{option.upcase}-#{Date.today.year}-#{Date.today.strftime("%^b")}.xlsx"
+end
+
 def save_to_workbook(name, data)
 	puts "Saving #{name} option data to workbook"
-	file_name = "OptionStatus-#{name.upcase}-#{Date.today.year}-#{Date.today.strftime("%^b")}.xlsx"
+	file_name = option_xlsx_filename(name)
 	sheet_name = Date.today.strftime("%m-%d")
 
 	if new_workbook?
@@ -34,8 +48,11 @@ def save_to_workbook(name, data)
 		ws = workbook[0]
 	else
 		unless File.exist?(file_name)
-			workbook = RubyXL::Workbook.new
-			ws = workbook[0]
+			download_file(file_name)	
+			unless File.exist? file_name
+				workbook = RubyXL::Workbook.new
+				ws = workbook[0]
+			end
 		else
 			workbook = RubyXL::Parser.parse(file_name)
 		end
@@ -60,6 +77,11 @@ end
 hsi_data = get_option_data(:hsi)
 hhi_data = get_option_data(:hhi)
 
-save_to_workbook(:hsi, hsi_data)
-save_to_workbook(:hhi, hhi_data)
+save_to_workbook(:HSI, hsi_data)
+save_to_workbook(:HHI, hhi_data)
+
+upload_file option_xlsx_filename :hsi
+upload_file option_xlsx_filename :hhi
+
+
 
