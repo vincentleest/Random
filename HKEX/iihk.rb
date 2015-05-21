@@ -27,11 +27,15 @@ def get_option_data(name)
 	puts "Getting #{name} Option data"
 	option_date = Date.today.strftime("%y%m%d")
 	option_month = Date.today.strftime("%^b-%y")
-
+    begin    
 	uri = URI('http://iihk.org/hkex/index.php')
 	res = Net::HTTP.post_form(uri, :option_class=> name, :option_date=> option_date, :option_month => option_month, :submitbutton => URI.unescape("%E6%8C%89%E6%AD%A4%E6%9F%A5%E8%A9%A2"))
-
 	res.body
+    rescue Errno::ENETUNREACH
+      data = `curl --data 'option_class=#{name}&option_date=150521&option_month=MAY-15&submitbutton=%E6%8C%89%E6%AD%A4%E6%9F%A5%E8%A9%A2' http://iihk.org/hkex/index.php`
+    end
+
+    unless res.nil? then res.body else data end
 end
 
 def option_xlsx_filename(option)
@@ -74,14 +78,11 @@ def save_to_workbook(name, data)
 	workbook.write(file_name)
 end
 
-hsi_data = get_option_data(:hsi)
-hhi_data = get_option_data(:hhi)
-
-save_to_workbook(:HSI, hsi_data)
-save_to_workbook(:HHI, hhi_data)
-
-upload_file option_xlsx_filename :hsi
-upload_file option_xlsx_filename :hhi
+["hsi", "hhi"].each { |o|
+  data = get_option_data(o)
+  save_to_workbook(o, data)
+  upload_file option_xlsx_filename data
+}
 
 
 
