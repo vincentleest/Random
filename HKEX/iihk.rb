@@ -15,7 +15,7 @@ end
 
 def upload_file(file_name)
 	home = ENV['HOME']
-	system "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' upload '#{home}/workspace/Random/HKEX/#{file_name}' '/#{file_name}'"
+	system "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' upload '#{home}/workspace/Random/HKEX/#{file_name}' '#{file_name}'"
 end
 
 def download_file(file_name)
@@ -47,12 +47,12 @@ def save_to_workbook(name, data)
 		workbook = RubyXL::Workbook.new(file_name)
 		ws = workbook[0]
 	else
-		unless File.exist?(file_name)
+		unless File.exist? file_name
 			download_file(file_name)	
-			unless File.exist? file_name
-				workbook = RubyXL::Workbook.new
-				ws = workbook[0]
-			end
+		end
+		unless File.exist? file_name
+			workbook = RubyXL::Workbook.new
+			ws = workbook[0]
 		else
 			workbook = RubyXL::Parser.parse(file_name)
 		end
