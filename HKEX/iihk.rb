@@ -64,25 +64,25 @@ def save_to_workbook(name, data)
 	end
 
 	unless workbook['Sheet 1'].nil?
-		ws.sheet_name = sheet_name
+		workbook['Sheet 1'].sheet_name = sheet_name
 	end	
 
 	ws ||= workbook.add_worksheet sheet_name
 
 	doc = Nokogiri::HTML(data)
-    puts "processing"
 	doc.xpath('//table//tr').each_with_index do |row, i|
 	  row.xpath('td').each_with_index do |cell,j|
 	      ws.add_cell(i,j,cell.text.gsub("\n", ' ').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'))
 	  end
 	end
-    puts "Saving"
+
 	workbook.write(file_name)
 end
 
 ["hsi", "hhi"].each { |o|
-  data = get_option_data(o)
+  data = get_option_data o
   save_to_workbook(o, data)
-  upload_file option_xlsx_filename o
+  upload_file option_xlsx_filename o    
+  File.delete option_xlsx_filename o
 }
 
