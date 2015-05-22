@@ -32,6 +32,7 @@ def get_option_data(name)
 	res = Net::HTTP.post_form(uri, :option_class=> name, :option_date=> option_date, :option_month => option_month, :submitbutton => URI.unescape("%E6%8C%89%E6%AD%A4%E6%9F%A5%E8%A9%A2"))
 	res.body
     rescue Errno::ENETUNREACH
+      puts "used curl"
       data = `curl --data 'option_class=#{name}&option_date=150521&option_month=MAY-15&submitbutton=%E6%8C%89%E6%AD%A4%E6%9F%A5%E8%A9%A2' http://iihk.org/hkex/index.php`
     end
 
@@ -69,20 +70,19 @@ def save_to_workbook(name, data)
 	ws ||= workbook.add_worksheet sheet_name
 
 	doc = Nokogiri::HTML(data)
-
+    puts "processing"
 	doc.xpath('//table//tr').each_with_index do |row, i|
 	  row.xpath('td').each_with_index do |cell,j|
 	      ws.add_cell(i,j,cell.text.gsub("\n", ' ').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'))
 	  end
 	end
+    puts "Saving"
 	workbook.write(file_name)
 end
 
 ["hsi", "hhi"].each { |o|
   data = get_option_data(o)
   save_to_workbook(o, data)
-  upload_file option_xlsx_filename data
+  upload_file option_xlsx_filename o
 }
-
-
 
