@@ -49,7 +49,8 @@ def save_to_workbook(name, data)
 	sheet_name = Date.today.strftime("%m-%d")
 
 	if new_workbook?
-		workbook = RubyXL::Workbook.new(file_name)
+    puts "Crateing new workbook"
+		workbook = RubyXL::Workbook.new
 		ws = workbook[0]
 	else
 		unless File.exist? file_name
@@ -62,17 +63,13 @@ def save_to_workbook(name, data)
 			workbook = RubyXL::Parser.parse(file_name)
 		end
 	end
-
-	unless workbook['Sheet 1'].nil?
-		workbook['Sheet 1'].sheet_name = sheet_name
-	end	
-
+  
 	ws ||= workbook.add_worksheet sheet_name
-
+        
 	doc = Nokogiri::HTML(data)
 	doc.xpath('//table//tr').each_with_index do |row, i|
 	  row.xpath('td').each_with_index do |cell,j|
-	      ws.add_cell(i,j,cell.text.gsub("\n", ' ').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'))
+      ws.add_cell(i,j,cell.text.gsub("\n", ' ').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'))
 	  end
 	end
 
