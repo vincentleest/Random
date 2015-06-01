@@ -46,8 +46,8 @@ rm -r "archive$TODAY/"
 
 for i in ${ZIP_FILE_NAMES[@]}
 do 
-	wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/$i$TODAY.zip"
-	$DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/$i$TODAY.zip" "$NOW/"
+  wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/$i$TODAY.zip"
+  $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/$i$TODAY.zip" "$NOW/"
 done
 
 wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/HSI_$HSI_DATE.xls"
