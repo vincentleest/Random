@@ -47,7 +47,6 @@ def get_option_data_by_date(name, date)
     unless res.nil? then res.body else data end
 end
 
-
 def option_xlsx_filename(option)
 	"OptionStatus-#{option.upcase}-#{Date.today.year}-#{Date.today.strftime("%^b")}.xlsx"
 end
@@ -60,20 +59,24 @@ def save_to_workbook(name, data, date)
 	if new_workbook?
     puts "Crateing new workbook"
 		workbook = RubyXL::Workbook.new
-		ws = workbook[0]
+		ws = workbook["Sheet1"]
+		ws.sheet_name = sheet_name
 	else
 		unless File.exist? file_name
 			download_file(file_name)	
 		end
 		unless File.exist? file_name
+			#Should not need to recreate file in the middle of the month
 			workbook = RubyXL::Workbook.new
-			ws = workbook[0]
+			ws = workbook["Sheet1"]
+			ws.sheet_name = sheet_name
 		else
 			workbook = RubyXL::Parser.parse(file_name)
 		end
 	end
   
 	ws ||= workbook.add_worksheet sheet_name
+	puts "Working on sheet #{ws.sheet_name}"
         
 	doc = Nokogiri::HTML(data)
 	doc.xpath('//table//tr').each_with_index do |row, i|
@@ -98,6 +101,7 @@ end
 #  upload_file option_xlsx_filename o    
 #}
 #
+
 ["hsi", "hhi"].each { |o|
   data = get_option_data o
   save_to_workbook(o, data, Date.today)
