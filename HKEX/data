@@ -1,0 +1,829 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>香港投資商學院 The Investopedia Institute of Hong Kong</title>
+<LINK REL="SHORTCUT ICON" href="http://iihk.org/image/IIHK_icon.png" TYPE="IMAGE/PNG" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script language="JavaScript" type="text/JavaScript">
+// Copyright 2006-2007 javascript-array.com
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+
+</script>
+
+<script type="text/javascript" src="http://iihk.org/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+
+<link rel="stylesheet" href="js/themes/base/jquery.ui.all.css">
+<link rel="stylesheet" type="text/css" href="css/option_page.css" />
+<link rel="stylesheet" type="text/css" href="css/option_table.css" />
+<script src="js/jquery-1.8.3.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/ui/jquery.ui.core.js"></script>
+<script src="js/ui/jquery.ui.widget.js"></script>
+<script src="js/ui/jquery.ui.datepicker.js"></script>
+<script class="jsbin" src="js/jquery.dataTables.js"></script>
+
+<style type="text/css">
+form.option_form label.error, label.error {
+	color: red;
+	font-style: italic
+}
+
+div.ui-datepicker{
+ font-size:11px;
+}
+table.display td {
+
+</style>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+<div id="dt_option">
+  <div id="container1">
+
+    
+
+
+
+<form id="option_form" name="option_form" method="post">
+<table width="1100" cellspacing="0" cellpadding="0" >
+<tr>
+	<table width="1100" cellspacing="0" cellpadding="0" border="0" bgcolor="#558ED5">
+	<tr style="height: 40px">
+		<td width="160"><font style="font-size: 1em; text-decoration: none; color: #FFFF99;">香港投資商學院</font></td>
+		<td width="110"><font style="color: #FFFFFF;">數據選擇</font></td>
+		<td width="200">
+			<select name="option_class" class="input_box" >
+				<option value='hsi' selected>HSI - HANG SENG INDEX</option>
+				<option value='hhi' >HHI - HS CHINA ENTERPRISES INDEX</option>
+			</select>
+		</td>
+		<td width="100"><label for="option_date" style="color: #FFFFFF;">日期</label>  </td><td width="140"><input type="text" name="option_date" id="datepicker" value="150605" ></td>
+		<td width="140"><font style="color: #FFFFFF;">合約月份</font></td>
+		<td width="100">
+			<select name="option_month" class="input_box" >
+			<option value='JUN-15' selected >JUN-15</option><option value='JUL-15'  >JUL-15</option><option value='AUG-15'  >AUG-15</option><option value='SEP-15'  >SEP-15</option><option value='DEC-15'  >DEC-15</option>			</select>
+		</td>
+		<td width="160"><input type="submit" name="submitbutton" value="按此查詢" onClick="return submit_form();" style="background-color:#FFF8B2; color:#00689F; width:100px; height:30px;"></td>
+	</tr>
+	</table>
+	
+</tr>
+
+<tr>
+	<table width="1100" cellspacing="0" cellpadding="0" border="0" bgcolor="#EBF7FE">
+	<b>
+	<tr style='height: 30px'><td align='left' width='95'><font color='#00689F'>&nbsp;&nbsp; 恆生指數</font></td><td align='left' width='85'><label style='background-color:#FFFFFF; display: block; width:85px;'>&nbsp;27260.2</label></td><td align='left' width='60'><font color='#00689F'>&nbsp;&nbsp; 升/跌</font></td><td align='left' width='60'><label style='background-color:#FFFFFF; display: block; width:60px;'><font color='red' align='left'>&nbsp;-291.7</font></label></td><td align='left' width='100'><font color='#00689F'>&nbsp;&nbsp; 成交額(億)</font></td><td align='left' width='60'><label style='background-color:#FFFFFF; display: block; width:60px;'>&nbsp;1585</label></td><td width='66'>&nbsp;</td><td width='100'>&nbsp;</td><td width='66'>&nbsp;</td><td width='100'>&nbsp;</td><td align='left' width='90'><font color='#00689F'>&nbsp;&nbsp; 國企指數</font></td><td align='left' width='80'><label style='background-color:#FFFFFF; display: block; width:80px;'>&nbsp;13914.6</label></td><td align='left' width='110'><font color='#00689F'>&nbsp;&nbsp; 升/跌</font></td><td align='left' width='70'><label style='background-color:#FFFFFF; display: block; width:70px;'><font color='red'>&nbsp;-212.4</font></label></td><td width='18'>&nbsp;</td></tr><tr style='height: 30px'><td align='left'><font color='#00689F'>&nbsp;&nbsp; 恆生期貨</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:85px;'>&nbsp;27011</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 升/跌</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:60px;'><font color='red'>&nbsp;-439</font></label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 高/低水</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:60px;'><font color='red'>&nbsp;-249</font></label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 最高</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:80px;'>&nbsp;27447</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 最低</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:80px;'>&nbsp;26988</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 成交量</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:80px;'>&nbsp;60356</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 未平倉合約</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:70px;'>&nbsp;127482</label></td><td>&nbsp;</td></tr><tr style='height: 30px'><td align='left'><font color='#00689F'>&nbsp;&nbsp; 國企期貨</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:85px;'>&nbsp;13685</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 升/跌</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:60px;'><font color='red'>&nbsp;-285</font></label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 高/低水</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:60px;'><font color='red'>&nbsp;-230</font></label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 最高</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:80px;'>&nbsp;13989</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 最低</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:80px;'>&nbsp;13601</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 成交量</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:80px;'>&nbsp;109989</label></td><td align='left'><font color='#00689F'>&nbsp;&nbsp; 未平倉合約</font></td><td align='left'><label style='background-color:#FFFFFF; display: block; width:70px;'>&nbsp;282415</label></td><td>&nbsp;</td></tr>	</b>
+	</table>
+</tr>
+
+<tr>
+<table width="950 cellpadding="0" cellspacing="0" border="1" class="display" id="option_table">
+<thead>
+<tr>
+	<th colspan="9" style="background-color: #558ED5;"><font style="color: #FFFFFF;">認購</font></th>
+	<th colspan="3" style="background-color: #FFFFFF;"><font style="color: #00689F;">
+2015年06月	</font></th>
+	<th colspan="9" style="background-color: #558ED5;"><font style="color: #FFFFFF;">認沽</font></th>
+</tr>
+<tr>
+	<th>未平倉<br>增減</th>
+	<th>上日<br>未平倉</th>
+	<th>未平倉</th>
+	<th>成交量<br>增減</th>
+	<th>上日<br>成交量</th>
+	<th>成交量</th>
+	<th>高</th>
+	<th>低</th>
+	<th>收</th>
+	<th>IV</th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>行使價</font></th>
+	<th>IV</th>
+	<th>收</th>
+	<th>低</th>
+	<th>高</th>
+	<th>成交量</th>
+	<th>上日<br>成交量</th>
+	<th>成交量<br>增減</th>
+	<th>未平倉</th>
+	<th>上日<br>未平倉</th>
+	<th>未平倉<br>增減</th>
+</tr>
+</thead>
+<tbody>
+<tr class='row_data'><td><font color='black'>0</font></td><td>16</td><td>16</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>17011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>10000</td>
+		<td>121</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>808</td><td>808</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>15011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>12000</td>
+		<td>100</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>179</td><td>179</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>14011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>13000</td>
+		<td>90</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>488</td><td>488</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>13811</td><td>0</td>
+		<td style='background-color: #FFFF99;'>13200</td>
+		<td>89</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>111</td><td>111</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>13611</td><td>0</td>
+		<td style='background-color: #FFFF99;'>13400</td>
+		<td>87</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>110</td><td>110</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>13411</td><td>0</td>
+		<td style='background-color: #FFFF99;'>13600</td>
+		<td>85</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>194</td><td>194</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>13211</td><td>0</td>
+		<td style='background-color: #FFFF99;'>13800</td>
+		<td>83</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>133</td><td>133</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>13011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>14000</td>
+		<td>82</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>90</td><td>90</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>12811</td><td>0</td>
+		<td style='background-color: #FFFF99;'>14200</td>
+		<td>80</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>368</td><td>368</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>12611</td><td>0</td>
+		<td style='background-color: #FFFF99;'>14400</td>
+		<td>78</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>611</td><td>611</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>12011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>15000</td>
+		<td>73</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>518</td><td>518</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>17</td><td>17</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>11211</td><td>0</td>
+		<td style='background-color: #FFFF99;'>15800</td>
+		<td>67</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>13</td><td ><font color='red'>-13</font></td><td>138</td><td>138</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>10411</td><td>0</td>
+		<td style='background-color: #FFFF99;'>16600</td>
+		<td>61</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>191</td><td>191</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>10011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>17000</td>
+		<td>59</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>117</td><td>117</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>10</td><td>10</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>9811</td><td>0</td>
+		<td style='background-color: #FFFF99;'>17200</td>
+		<td>57</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>3</td><td ><font color='red'>-3</font></td><td>68</td><td>68</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>9611</td><td>0</td>
+		<td style='background-color: #FFFF99;'>17400</td>
+		<td>56</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>360</td><td>360</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>10</td><td>10</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>9411</td><td>0</td>
+		<td style='background-color: #FFFF99;'>17600</td>
+		<td>54</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>12</td><td ><font color='red'>-12</font></td><td>73</td><td>73</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>9211</td><td>0</td>
+		<td style='background-color: #FFFF99;'>17800</td>
+		<td>53</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>6</td><td ><font color='red'>-6</font></td><td>185</td><td>185</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>9011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>18000</td>
+		<td>52</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>336</td><td>336</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>8811</td><td>0</td>
+		<td style='background-color: #FFFF99;'>18200</td>
+		<td>50</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>10</td><td ><font color='red'>-10</font></td><td>1544</td><td>1544</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>8611</td><td>0</td>
+		<td style='background-color: #FFFF99;'>18400</td>
+		<td>49</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>133</td><td>133</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>10</td><td>10</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>8411</td><td>0</td>
+		<td style='background-color: #FFFF99;'>18600</td>
+		<td>48</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>1027</td><td>1027</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>8211</td><td>0</td>
+		<td style='background-color: #FFFF99;'>18800</td>
+		<td>46</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>70</td><td>70</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>8011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>19000</td>
+		<td>45</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>5</td><td ><font color='red'>-5</font></td><td>601</td><td>601</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>7811</td><td>0</td>
+		<td style='background-color: #FFFF99;'>19200</td>
+		<td>44</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>45</td><td ><font color='red'>-45</font></td><td>80</td><td>80</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>7611</td><td>0</td>
+		<td style='background-color: #FFFF99;'>19400</td>
+		<td>43</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>2</td><td ><font color='red'>-2</font></td><td>24</td><td>24</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>7411</td><td>0</td>
+		<td style='background-color: #FFFF99;'>19600</td>
+		<td>41</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>5</td><td ><font color='red'>-5</font></td><td>2416</td><td>2416</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>7211</td><td>0</td>
+		<td style='background-color: #FFFF99;'>19800</td>
+		<td>40</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>110</td><td>110</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>126</td><td>126</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>7011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>20000</td>
+		<td>39</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>10</td><td ><font color='red'>-10</font></td><td>905</td><td>905</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>5</td><td>5</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>6811</td><td>0</td>
+		<td style='background-color: #FFFF99;'>20200</td>
+		<td>38</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>6</td><td ><font color='red'>-6</font></td><td>115</td><td>115</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>6611</td><td>0</td>
+		<td style='background-color: #FFFF99;'>20400</td>
+		<td>37</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>6</td><td ><font color='red'>-6</font></td><td>122</td><td>122</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>6411</td><td>0</td>
+		<td style='background-color: #FFFF99;'>20600</td>
+		<td>35</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>237</td><td>237</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>6</td><td>6</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>6211</td><td>0</td>
+		<td style='background-color: #FFFF99;'>20800</td>
+		<td>34</td><td>1</td>
+		<td>2</td>
+		<td>2</td><td>26</td><td>0</td><td><font color='green'>26</font></td><td>223</td><td>197</td><td><font color='green'>26</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>353</td><td>353</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>6011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>21000</td>
+		<td>33</td><td>1</td>
+		<td>2</td>
+		<td>2</td><td>21</td><td>0</td><td><font color='green'>21</font></td><td>3902</td><td bgcolor='#F00000'><font color='#FFFFFF'>3881</font></td><td><font color='green'>21</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>12</td><td>12</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>5811</td><td>0</td>
+		<td style='background-color: #FFFF99;'>21200</td>
+		<td>32</td><td>1</td>
+		<td>2</td>
+		<td>3</td><td>61</td><td>13</td><td><font color='green'>48</font></td><td>381</td><td>381</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>2</td><td>2</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>5611</td><td>0</td>
+		<td style='background-color: #FFFF99;'>21400</td>
+		<td>31</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>563</td><td>563</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>9</td><td>9</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>5411</td><td>0</td>
+		<td style='background-color: #FFFF99;'>21600</td>
+		<td>30</td><td>1</td>
+		<td>3</td>
+		<td>4</td><td>29</td><td>13</td><td><font color='green'>16</font></td><td>2556</td><td>2569</td><td><font color='red'>-13</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>5</td><td>5</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>5211</td><td>0</td>
+		<td style='background-color: #FFFF99;'>21800</td>
+		<td>28</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>414</td><td>414</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>1108</td><td>1108</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>5011</td><td>0</td>
+		<td style='background-color: #FFFF99;'>22000</td>
+		<td>27</td><td>1</td>
+		<td>5</td>
+		<td>5</td><td>2</td><td>43</td><td ><font color='red'>-41</font></td><td>2388</td><td>2388</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>2</td><td>2</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>4812</td><td>26</td>
+		<td style='background-color: #FFFF99;'>22200</td>
+		<td>26</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>1050</td><td>1050</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>4612</td><td>25</td>
+		<td style='background-color: #FFFF99;'>22400</td>
+		<td>25</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>21</td><td ><font color='red'>-21</font></td><td>1994</td><td>1994</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>19</td><td>19</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>4412</td><td>24</td>
+		<td style='background-color: #FFFF99;'>22600</td>
+		<td>24</td><td>1</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>63</td><td ><font color='red'>-63</font></td><td>640</td><td>640</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>4</td><td>4</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>4213</td><td>24</td>
+		<td style='background-color: #FFFF99;'>22800</td>
+		<td>24</td><td>2</td>
+		<td>5</td>
+		<td>9</td><td>11</td><td>18</td><td ><font color='red'>-7</font></td><td>1097</td><td>1102</td><td><font color='red'>-5</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>718</td><td>718</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>4014</td><td>24</td>
+		<td style='background-color: #FFFF99;'>23000</td>
+		<td>24</td><td>3</td>
+		<td>9</td>
+		<td>11</td><td>39</td><td>335</td><td ><font color='red'>-296</font></td><td>2783</td><td>2750</td><td><font color='green'>33</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>58</td><td>58</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>3815</td><td>24</td>
+		<td style='background-color: #FFFF99;'>23200</td>
+		<td>24</td><td>4</td>
+		<td>10</td>
+		<td>13</td><td>31</td><td>138</td><td ><font color='red'>-107</font></td><td>616</td><td>611</td><td><font color='green'>5</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>272</td><td>272</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>3616</td><td>23</td>
+		<td style='background-color: #FFFF99;'>23400</td>
+		<td>24</td><td>6</td>
+		<td>11</td>
+		<td>16</td><td>99</td><td>168</td><td ><font color='red'>-69</font></td><td>728</td><td>674</td><td><font color='green'>54</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>81</td><td>81</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>3418</td><td>23</td>
+		<td style='background-color: #FFFF99;'>23600</td>
+		<td>24</td><td>8</td>
+		<td>13</td>
+		<td>18</td><td>23</td><td>157</td><td ><font color='red'>-134</font></td><td>1243</td><td>1255</td><td><font color='red'>-12</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>480</td><td>480</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>3221</td><td>23</td>
+		<td style='background-color: #FFFF99;'>23800</td>
+		<td>23</td><td>11</td>
+		<td>14</td>
+		<td>23</td><td>92</td><td>157</td><td ><font color='red'>-65</font></td><td>968</td><td>1002</td><td><font color='red'>-34</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>936</td><td>936</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>3025</td><td>23</td>
+		<td style='background-color: #FFFF99;'>24000</td>
+		<td>23</td><td>14</td>
+		<td>15</td>
+		<td>26</td><td>75</td><td>163</td><td ><font color='red'>-88</font></td><td>1531</td><td>1481</td><td><font color='green'>50</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>245</td><td>245</td><td><font color='green'>1</font></td><td>1</td><td>2</td><td>3000</td>
+		<td>2893</td>
+		<td>2830</td><td>23</td>
+		<td style='background-color: #FFFF99;'>24200</td>
+		<td>23</td><td>19</td>
+		<td>19</td>
+		<td>34</td><td>151</td><td>142</td><td><font color='green'>9</font></td><td>415</td><td>382</td><td><font color='green'>33</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>464</td><td>463</td><td ><font color='red'>-4</font></td><td>5</td><td>1</td><td>2800</td>
+		<td>2800</td>
+		<td>2636</td><td>22</td>
+		<td style='background-color: #FFFF99;'>24400</td>
+		<td>22</td><td>26</td>
+		<td>24</td>
+		<td>41</td><td>147</td><td>210</td><td ><font color='red'>-63</font></td><td>1394</td><td>1370</td><td><font color='green'>24</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>1380</td><td>1379</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td>2610</td>
+		<td>2610</td>
+		<td>2445</td><td>22</td>
+		<td style='background-color: #FFFF99;'>24600</td>
+		<td>22</td><td>35</td>
+		<td>28</td>
+		<td>50</td><td>93</td><td>271</td><td ><font color='red'>-178</font></td><td>2273</td><td>2231</td><td><font color='green'>42</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>502</td><td>501</td><td><font color='green'>1</font></td><td>1</td><td>2</td><td>2430</td>
+		<td>2420</td>
+		<td>2256</td><td>22</td>
+		<td style='background-color: #FFFF99;'>24800</td>
+		<td>22</td><td>46</td>
+		<td>34</td>
+		<td>63</td><td>343</td><td>621</td><td ><font color='red'>-278</font></td><td>2946</td><td>2872</td><td><font color='green'>74</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>3664</td><td>3664</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td>2270</td>
+		<td>2270</td>
+		<td>2070</td><td>22</td>
+		<td style='background-color: #FFFF99;'>25000</td>
+		<td>22</td><td>60</td>
+		<td>43</td>
+		<td>73</td><td>535</td><td>801</td><td ><font color='red'>-266</font></td><td bgcolor='#F00000'><font color='#FFFFFF'>4051</font></td><td>3834</td><td><font color='green'>217</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>305</td><td>304</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td>2070</td>
+		<td>2070</td>
+		<td>1887</td><td>21</td>
+		<td style='background-color: #FFFF99;'>25200</td>
+		<td>22</td><td>78</td>
+		<td>51</td>
+		<td>88</td><td>279</td><td>714</td><td ><font color='red'>-435</font></td><td>1768</td><td>1763</td><td><font color='green'>5</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>66</td><td>66</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td>1900</td>
+		<td>1900</td>
+		<td>1709</td><td>21</td>
+		<td style='background-color: #FFFF99;'>25400</td>
+		<td>21</td><td>101</td>
+		<td>62</td>
+		<td>108</td><td>534</td><td>624</td><td ><font color='red'>-90</font></td><td>1172</td><td>1146</td><td><font color='green'>26</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>303</td><td>302</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td>1720</td>
+		<td>1720</td>
+		<td>1553</td><td>22</td>
+		<td style='background-color: #FFFF99;'>25600</td>
+		<td>21</td><td>129</td>
+		<td>76</td>
+		<td>134</td><td>438</td><td>944</td><td ><font color='red'>-506</font></td><td>1109</td><td>1093</td><td><font color='green'>16</font></td><tr class='row_data'><td><font color='green'>5</font></td><td>118</td><td>123</td><td><font color='green'>6</font></td><td>0</td><td>6</td><td>1524</td>
+		<td>1472</td>
+		<td>1380</td><td>21</td>
+		<td style='background-color: #FFFF99;'>25800</td>
+		<td>21</td><td>164</td>
+		<td>95</td>
+		<td>165</td><td>544</td><td>1163</td><td ><font color='red'>-619</font></td><td>1171</td><td>1049</td><td><font color='green'>122</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>2856</td><td>2855</td><td><font color='green'>3</font></td><td>0</td><td>3</td><td>1324</td>
+		<td>1230</td>
+		<td>1218</td><td>21</td>
+		<td style='background-color: #FFFF99;'>26000</td>
+		<td>21</td><td>203</td>
+		<td>117</td>
+		<td>204</td><td bgcolor='#F00000'><font color='#FFFFFF'>1231</font></td><td bgcolor='#F00000'><font color='#FFFFFF'>3081</font></td><td ><font color='red'>-1850</font></td><td>3999</td><td>3855</td><td><font color='green'>144</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>148</td><td>147</td><td ><font color='red'>-2</font></td><td>4</td><td>2</td><td>1173</td>
+		<td>1171</td>
+		<td>1071</td><td>21</td>
+		<td style='background-color: #FFFF99;'>26200</td>
+		<td>20</td><td>249</td>
+		<td>147</td>
+		<td>250</td><td>730</td><td>696</td><td><font color='green'>34</font></td><td>1646</td><td>1519</td><td><font color='green'>127</font></td><tr class='row_data'><td><font color='green'>7</font></td><td>507</td><td>514</td><td><font color='green'>17</font></td><td>2</td><td>19</td><td>975</td>
+		<td>915</td>
+		<td>915</td><td>20</td>
+		<td style='background-color: #FFFF99;'>26400</td>
+		<td>20</td><td>306</td>
+		<td>183</td>
+		<td>306</td><td>1089</td><td>859</td><td><font color='green'>230</font></td><td>1556</td><td>1445</td><td><font color='green'>111</font></td><tr class='row_data'><td><font color='green'>7</font></td><td>245</td><td>252</td><td ><font color='red'>-4</font></td><td>26</td><td>22</td><td>897</td>
+		<td>783</td>
+		<td>782</td><td>20</td>
+		<td style='background-color: #FFFF99;'>26600</td>
+		<td>20</td><td>370</td>
+		<td>233</td>
+		<td>372</td><td>550</td><td>1344</td><td ><font color='red'>-794</font></td><td>1250</td><td>1281</td><td><font color='red'>-31</font></td><tr class='row_data'><td><font color='red'>-6</font></td><td>821</td><td>815</td><td><font color='green'>80</font></td><td>26</td><td>106</td><td>830</td>
+		<td>654</td>
+		<td>664</td><td>20</td>
+		<td style='background-color: #FFFF99;'>26800</td>
+		<td>19</td><td>444</td>
+		<td>290</td>
+		<td>450</td><td>776</td><td>896</td><td ><font color='red'>-120</font></td><td>1009</td><td>781</td><td><font color='green'>228</font></td><tr class='row_data'><td><font color='green'>18</font></td><td bgcolor='#F00000'><font color='#FFFFFF'>4565</font></td><td bgcolor='#F00000'><font color='#FFFFFF'>4583</font></td><td ><font color='red'>-64</font></td><td>284</td><td>220</td><td>740</td>
+		<td>538</td>
+		<td>562</td><td>20</td>
+		<td style='background-color: #FFFF99;'>27000</td>
+		<td>19</td><td>528</td>
+		<td>350</td>
+		<td>542</td><td>668</td><td>1051</td><td ><font color='red'>-383</font></td><td>2899</td><td>2698</td><td><font color='green'>201</font></td><tr class='curindex'><td><font color='green'>25</font></td><td>887</td><td>912</td><td><font color='green'>180</font></td><td>142</td><td>322</td><td>620</td>
+		<td>444</td>
+		<td>455</td><td>19</td>
+		<td style='background-color: #FFFF99;'>27200</td>
+		<td>19</td><td>640</td>
+		<td>436</td>
+		<td>650</td><td>432</td><td>894</td><td ><font color='red'>-462</font></td><td>2276</td><td>2258</td><td><font color='green'>18</font></td><tr class='row_data'><td><font color='green'>50</font></td><td>1087</td><td>1137</td><td><font color='green'>104</font></td><td>427</td><td>531</td><td>543</td>
+		<td>360</td>
+		<td>380</td><td>19</td>
+		<td style='background-color: #FFFF99;'>27400</td>
+		<td>19</td><td>758</td>
+		<td>534</td>
+		<td>735</td><td>116</td><td>431</td><td ><font color='red'>-315</font></td><td>2095</td><td>2101</td><td><font color='red'>-6</font></td><tr class='row_data'><td><font color='red'>-85</font></td><td>1574</td><td>1489</td><td ><font color='red'>-258</font></td><td>1091</td><td>833</td><td>453</td>
+		<td>289</td>
+		<td>300</td><td>19</td>
+		<td style='background-color: #FFFF99;'>27600</td>
+		<td>19</td><td>885</td>
+		<td>630</td>
+		<td>885</td><td>100</td><td>217</td><td ><font color='red'>-117</font></td><td>1015</td><td>970</td><td><font color='green'>45</font></td><tr class='row_data'><td><font color='green'>58</font></td><td>1552</td><td>1610</td><td ><font color='red'>-949</font></td><td>1470</td><td>521</td><td>364</td>
+		<td>232</td>
+		<td>240</td><td>19</td>
+		<td style='background-color: #FFFF99;'>27800</td>
+		<td>19</td><td>1028</td>
+		<td>829</td>
+		<td>1030</td><td>134</td><td>65</td><td><font color='green'>69</font></td><td>544</td><td>474</td><td><font color='green'>70</font></td><tr class='row_data'><td><font color='green'>113</font></td><td>2195</td><td>2308</td><td ><font color='red'>-1170</font></td><td bgcolor='#F00000'><font color='#FFFFFF'>2100</font></td><td bgcolor='#F00000'><font color='#FFFFFF'>930</font></td><td>298</td>
+		<td>185</td>
+		<td>191</td><td>19</td>
+		<td style='background-color: #FFFF99;'>28000</td>
+		<td>19</td><td>1176</td>
+		<td>1080</td>
+		<td>1176</td><td>62</td><td>46</td><td><font color='green'>16</font></td><td>284</td><td>291</td><td><font color='red'>-7</font></td><tr class='row_data'><td><font color='green'>359</font></td><td>1564</td><td>1923</td><td ><font color='red'>-572</font></td><td>1430</td><td>858</td><td>239</td>
+		<td>147</td>
+		<td>151</td><td>19</td>
+		<td style='background-color: #FFFF99;'>28200</td>
+		<td>20</td><td>1353</td>
+		<td>1153</td>
+		<td>1353</td><td>44</td><td>25</td><td><font color='green'>19</font></td><td>123</td><td>134</td><td><font color='red'>-11</font></td><tr class='row_data'><td><font color='green'>86</font></td><td>1206</td><td>1292</td><td ><font color='red'>-523</font></td><td>1074</td><td>551</td><td>192</td>
+		<td>115</td>
+		<td>117</td><td>19</td>
+		<td style='background-color: #FFFF99;'>28400</td>
+		<td>19</td><td>1501</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>4</td><td ><font color='red'>-4</font></td><td>219</td><td>219</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>49</font></td><td>1417</td><td>1466</td><td ><font color='red'>-294</font></td><td>807</td><td>513</td><td>152</td>
+		<td>91</td>
+		<td>95</td><td>20</td>
+		<td style='background-color: #FFFF99;'>28600</td>
+		<td>19</td><td>1682</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>207</td><td>207</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>9</font></td><td>1090</td><td>1099</td><td ><font color='red'>-756</font></td><td>1168</td><td>412</td><td>121</td>
+		<td>72</td>
+		<td>73</td><td>20</td>
+		<td style='background-color: #FFFF99;'>28800</td>
+		<td>19</td><td>1860</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>22</td><td>22</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='red'>-13</font></td><td>2493</td><td>2480</td><td ><font color='red'>-1178</font></td><td>1640</td><td>462</td><td>96</td>
+		<td>57</td>
+		<td>55</td><td>20</td>
+		<td style='background-color: #FFFF99;'>29000</td>
+		<td>19</td><td>2043</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>4</td><td ><font color='red'>-4</font></td><td>31</td><td>31</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>38</font></td><td>1482</td><td>1520</td><td ><font color='red'>-343</font></td><td>659</td><td>316</td><td>78</td>
+		<td>46</td>
+		<td>41</td><td>20</td>
+		<td style='background-color: #FFFF99;'>29200</td>
+		<td>19</td><td>2229</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>27</font></td><td>530</td><td>557</td><td ><font color='red'>-115</font></td><td>481</td><td>366</td><td>58</td>
+		<td>36</td>
+		<td>30</td><td>20</td>
+		<td style='background-color: #FFFF99;'>29400</td>
+		<td>19</td><td>2418</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>32</font></td><td>952</td><td>984</td><td ><font color='red'>-227</font></td><td>353</td><td>126</td><td>48</td>
+		<td>28</td>
+		<td>22</td><td>20</td>
+		<td style='background-color: #FFFF99;'>29600</td>
+		<td>19</td><td>2610</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>4</font></td><td>466</td><td>470</td><td ><font color='red'>-180</font></td><td>202</td><td>22</td><td>39</td>
+		<td>24</td>
+		<td>16</td><td>20</td>
+		<td style='background-color: #FFFF99;'>29800</td>
+		<td>19</td><td>2804</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='red'>-11</font></td><td>3257</td><td>3246</td><td ><font color='red'>-560</font></td><td>680</td><td>120</td><td>33</td>
+		<td>19</td>
+		<td>12</td><td>20</td>
+		<td style='background-color: #FFFF99;'>30000</td>
+		<td>20</td><td>3000</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>13</td><td>13</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>19</font></td><td>888</td><td>907</td><td ><font color='red'>-19</font></td><td>67</td><td>48</td><td>26</td>
+		<td>16</td>
+		<td>8</td><td>20</td>
+		<td style='background-color: #FFFF99;'>30200</td>
+		<td>20</td><td>3197</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>2</td><td>2</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='red'>-7</font></td><td>496</td><td>489</td><td ><font color='red'>-14</font></td><td>42</td><td>28</td><td>21</td>
+		<td>14</td>
+		<td>6</td><td>20</td>
+		<td style='background-color: #FFFF99;'>30400</td>
+		<td>19</td><td>3394</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>1</font></td><td>358</td><td>359</td><td ><font color='red'>-161</font></td><td>185</td><td>24</td><td>18</td>
+		<td>12</td>
+		<td>4</td><td>20</td>
+		<td style='background-color: #FFFF99;'>30600</td>
+		<td>20</td><td>3593</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>12</font></td><td>917</td><td>929</td><td ><font color='red'>-95</font></td><td>158</td><td>63</td><td>15</td>
+		<td>10</td>
+		<td>3</td><td>20</td>
+		<td style='background-color: #FFFF99;'>30800</td>
+		<td>20</td><td>3792</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='red'>-21</font></td><td>887</td><td>866</td><td ><font color='red'>-60</font></td><td>155</td><td>95</td><td>12</td>
+		<td>8</td>
+		<td>2</td><td>20</td>
+		<td style='background-color: #FFFF99;'>31000</td>
+		<td>20</td><td>3991</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>6</font></td><td>342</td><td>348</td><td ><font color='red'>-19</font></td><td>33</td><td>14</td><td>11</td>
+		<td>6</td>
+		<td>1</td><td>19</td>
+		<td style='background-color: #FFFF99;'>31200</td>
+		<td>19</td><td>4190</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>1</td><td>1</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>2</font></td><td>383</td><td>385</td><td ><font color='red'>-24</font></td><td>43</td><td>19</td><td>9</td>
+		<td>6</td>
+		<td>1</td><td>20</td>
+		<td style='background-color: #FFFF99;'>31400</td>
+		<td>20</td><td>4390</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='red'>-1</font></td><td>54</td><td>53</td><td ><font color='red'>-29</font></td><td>31</td><td>2</td><td>5</td>
+		<td>5</td>
+		<td>1</td><td>21</td>
+		<td style='background-color: #FFFF99;'>31600</td>
+		<td>21</td><td>4590</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>381</td><td>381</td><td ><font color='red'>-22</font></td><td>22</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>1</td><td>22</td>
+		<td style='background-color: #FFFF99;'>31800</td>
+		<td>0</td><td>4789</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>1175</td><td>1175</td><td ><font color='red'>-22</font></td><td>31</td><td>9</td><td>5</td>
+		<td>3</td>
+		<td>1</td><td>22</td>
+		<td style='background-color: #FFFF99;'>32000</td>
+		<td>0</td><td>4989</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>84</td><td>84</td><td ><font color='red'>-1</font></td><td>4</td><td>3</td><td>3</td>
+		<td>3</td>
+		<td>1</td><td>23</td>
+		<td style='background-color: #FFFF99;'>32200</td>
+		<td>0</td><td>5189</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>918</td><td>918</td><td ><font color='red'>-32</font></td><td>32</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>1</td><td>24</td>
+		<td style='background-color: #FFFF99;'>32400</td>
+		<td>0</td><td>5389</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='green'>2</font></td><td>438</td><td>440</td><td ><font color='red'>-4</font></td><td>10</td><td>6</td><td>3</td>
+		<td>2</td>
+		<td>1</td><td>25</td>
+		<td style='background-color: #FFFF99;'>32600</td>
+		<td>0</td><td>5589</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td><tr class='row_data'><td><font color='black'>0</font></td><td>72</td><td>72</td><td ><font color='red'>-22</font></td><td>22</td><td>0</td><td>0</td>
+		<td>0</td>
+		<td>1</td><td>25</td>
+		<td style='background-color: #FFFF99;'>32800</td>
+		<td>0</td><td>5789</td>
+		<td>0</td>
+		<td>0</td><td>0</td><td>0</td><td><font color='black'>0</font></td><td>0</td><td>0</td><td><font color='black'>0</font></td></tbody>
+	<tfoot>
+	<tr>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>778</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>49597</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>50375</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>-7331</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>14913</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>7582</font></th>
+	<th colspan='4' style='background-color: #CCCCCC;'><font color='black'>成交量 認沽/認購比率 =</font></th>
+	<th style='background-color: #CCCCCC;'><font color='black'><label style='background-color:#FFFFFF; display: block; width:45px;'>1.25</label></font></th>
+	<th colspan='3' style='background-color: #CCCCCC;'><font color='black'>OI 認沽/認購比率 =</font></th>
+	<th style='background-color: #CCCCCC;'><font color='black'><label style='background-color:#FFFFFF; display: block; width:45px;'>1.41</label></font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>9505</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>16515</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>-7010</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>71032</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>69459</font></th>
+	<th style='background-color: #558ED5;'><font color='#FFFFFF'>1573</font></th>
+	</tr>
+	</tfoot></table>
+</tr>
+</table>
+</form>
+	
+<script type="text/javascript">
+
+$('.row_data').hover(
+	function () {
+		$(this).css("background","yellow");
+	}, 
+	function () {
+		$(this).css("background","");
+	}
+);
+
+$('.curindex').hover(
+	function () {
+		$(this).css("background","yellow");
+	}, 
+	function () {
+		$(this).css("background","");
+	}
+);
+
+$(function() {
+	$( "#datepicker" ).datepicker(
+		{ 
+			minDate: "-2M", 
+			maxDate: "0", 
+			dateFormat: 'ymmdd', 
+			showButtonPanel: false, 
+			numberOfMonths: 1,
+			beforeShowDay: function(day) {
+				var day = day.getDay();
+				if (day == 0 || day == 6) {
+					return [false]
+				} else {
+					return [true]
+				}
+			}
+		}
+	);
+});
+
+$("#option_form").validate({
+		rules: {
+			option_date: {
+				required: true,
+				minlength: 6,
+				maxlength: 6,
+				digits: true
+			}
+		},
+		messages: {
+			option_date: {
+				required: "請選擇日期",
+				minlength: "日期格式是 YYMMDD",
+				maxlength: "日期格式是 YYMMDD",
+				digits: "日期需要輸入數字"
+			}
+		}
+	});
+	
+$(document).ready(function() {
+	$('#option_table').dataTable( {
+		"aaSorting": [[ 11, "asc" ]],
+		"bFilter": false,
+		"iDisplayLength": 20,
+		"aLengthMenu": [[20, 50, -1], [20, 50, "All"]],
+		"bSort": false,
+		"bPaginate": false, 
+		"bLengthChange": false,
+		"bInfo": false,
+		"sPaginationType": "full_numbers",
+		"sScrollY": "600px",
+		"bScrollCollapse": true,
+		"iScrollLoadGap": 20,
+		"bAutoWidth": true
+	});
+	
+	$('div.dataTables_scrollBody').scrollTop( $('#option_table tbody tr:eq(51)').position().top );
+} );
+</script>
+
+  </div>
+</div>
+	
+</div>
+</div>
+</body>
+</html>
+
