@@ -63,6 +63,7 @@ def save_to_workbook(name, data, date)
 		ws.sheet_name = sheet_name
 	else
 		unless File.exist? file_name
+      puts "File #{file_name} doesn't exists"
 			download_file(file_name)	
 		end
 		unless File.exist? file_name
@@ -107,6 +108,7 @@ end
 #
 
 ["hsi", "hhi"].each { |o|
+  Date.today.strftime("%y%m%d")
   data = get_option_data o
   save_to_workbook(o, data, Date.today)
   upload_file option_xlsx_filename o    
