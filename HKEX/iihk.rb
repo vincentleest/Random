@@ -78,16 +78,69 @@ def save_to_workbook(name, data, date)
   
 	ws ||= workbook.add_worksheet sheet_name
 	puts "Working on sheet #{ws.sheet_name}"
-        
-	doc = Nokogiri::HTML(data)
-	doc.xpath('//table//tr').each_with_index do |row, i|
-	  row.xpath('td').each_with_index do |cell,j|
-      ws.add_cell(i,j,cell.text.gsub("\n", ' ').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'))
+
+	#Extract data
+    lines = Array.new
+    doc = Nokogiri::HTML(data)
+    doc.xpath('//table//tr').each_with_index do |row, i|
+    	line = ""
+        row.xpath('th').each do |cell|
+          #tmp ='"', cell.text.gsub("\n", '').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'), "\","
+          tmp =cell.text.gsub("\n", '').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'), ","
+    	  line << tmp.join('')
+        end
+        row.xpath('td').each do |cell|
+          #tmp ='"', cell.text.gsub("\n", '').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'), "\","
+          tmp =cell.text.gsub("\n", '').gsub('"', '\"').gsub(/(\s){2,}/m, '\1'), ","
+    	  line << tmp.join('')
+        end
+    	lines.push line
+    end
+
+	lines.reject!{|l| l.empty?}	
+
+	#Write to file
+	lines[1..-1].each_with_index do |row, i|
+    count = row.split(',').length
+    case count
+    when 3
+		  # header
+      ws.merge_cells(i, 0, i, 8)  
+      ws.merge_cells(i, 9, i, 11)  
+      ws.merge_cells(i, 12, i, 20)  
+		  cells = row.split(',')
+		  ws.add_cell(i,0,cells[0])
+		  ws.add_cell(i,9,cells[1])
+		  ws.add_cell(i,12,cells[2])
+
+	  when 15, 21
+		  # Summary
+		  # Body
+		  row.split(',').each_with_index do |cell, j| 
+   		  ws.add_cell(i,j,cell)
+      end
+	  when 16
+		  # Footer
+      ws.merge_cells(i, 6, i, 9)  
+      ws.merge_cells(i, 11, i, 13)  
+		  
+		  cells = row.split(',')
+      cells[0..5].each_with_index do |cell, j|
+		    ws.add_cell(i,j,cell)
+      end
+		  ws.add_cell(i,6,cells[6])
+      ws.add_cell(i,10,cells[7])
+		  ws.add_cell(i,11,cells[8])
+		  ws.add_cell(i,14,cells[8])
+      cells[9..15].each_with_index do |cell, j|
+		    ws.add_cell(i,j+14,cell)
+      end
 	  end
 	end
 
 	workbook.write(file_name)
 end
+
 
 #till_today.each{ |d|
 #  
