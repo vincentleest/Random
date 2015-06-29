@@ -24,7 +24,9 @@ end
 
 def download_file(file_name)
 	home = ENV['HOME']
-	system "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' download '#{file_name}' '#{home}/workspace/Random/HKEX/#{file_name}'"
+  command = "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' download '#{file_name}' '#{home}/workspace/Random/HKEX/#{file_name}'"
+  puts command
+	system command
 end
 
 def get_option_data(name)
@@ -152,13 +154,13 @@ end
 #}
 #
 #["hsi", "hhi"].each { |o|
-#  d = Date.new(2015, 6, 9)
+#  d = Date.new(2015, 6, 26)
 #  data = get_option_data_by_date(o, d)
 #  save_to_workbook(o, data, d)
 #  upload_file option_xlsx_filename o    
 #  File.delete option_xlsx_filename o
 #}
-#
+
 
 ["hsi", "hhi"].each { |o|
   Date.today.strftime("%y%m%d")
