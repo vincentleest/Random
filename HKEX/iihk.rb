@@ -17,6 +17,10 @@ def new_workbook?
 	Date.today == first_monday
 end
 
+def full_path file_name
+  "#{ENV['HOME']}/workspace/Random/HKEX/#{file_name}"
+end
+
 def upload_file(file_name)
 	home = ENV['HOME']
 	system "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' upload '#{home}/workspace/Random/HKEX/#{file_name}' '#{file_name}'"
@@ -24,8 +28,7 @@ end
 
 def download_file(file_name)
 	home = ENV['HOME']
-  command = "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' download '#{file_name}' '#{home}/workspace/Random/HKEX/#{file_name}'"
-  puts command
+  command = "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' download '#{full_path file_name}' '#{home}/workspace/Random/HKEX/#{file_name}'"
 	system command
 end
 
@@ -59,7 +62,6 @@ def save_to_workbook(name, data, date)
 	sheet_name = date.strftime("%m-%d")
 
 	if new_workbook?
-    puts "Crateing new workbook"
 		workbook = RubyXL::Workbook.new
 		ws = workbook["Sheet1"]
 		ws.sheet_name = sheet_name
@@ -140,7 +142,7 @@ def save_to_workbook(name, data, date)
 	  end
 	end
 
-	workbook.write(file_name)
+	workbook.write(full_path file_name)
 end
 
 
