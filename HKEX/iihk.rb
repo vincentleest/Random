@@ -28,7 +28,8 @@ end
 
 def download_file(file_name)
 	home = ENV['HOME']
-  command = "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' download '#{full_path file_name}' '#{home}/workspace/Random/HKEX/#{file_name}'"
+  command = "#{home}/workspace/Random/HKEX/dropbox_uploader.sh -f '#{home}/.dropbox_uploader' download '#{file_name}' '#{full_path file_name}'"
+  puts command
 	system command
 end
 
@@ -52,6 +53,24 @@ def get_option_data_by_date(name, date)
     unless res.nil? then res.body else data end
 end
 
+def get_option_data_by_date_and_month(name, date, month)
+	puts "Getting #{name} Option data"
+	option_date = date.strftime("%y%m%d")
+	option_month = date.strftime("%^b-%y")
+
+    begin    
+	uri = URI('http://iihk.org/hkex/index.php')
+	res = Net::HTTP.post_form(uri, :option_class=> name, :option_date=> option_date, :option_month => option_month, :submitbutton => URI.unescape("%E6%8C%89%E6%AD%A4%E6%9F%A5%E8%A9%A2"))
+	res.body
+    rescue Errno::ENETUNREACH
+      puts "used curl"
+      data = `curl --data 'option_class=#{name}&option_date=#{option_date}&option_month=#{option_month}&submitbutton=%E6%8C%89%E6%AD%A4%E6%9F%A5%E8%A9%A2' http://iihk.org/hkex/index.php`
+    end
+
+    unless res.nil? then res.body else data end
+end
+
+
 def option_xlsx_filename(option)
 	"OptionStatus-#{option.upcase}-#{Date.today.year}-#{Date.today.strftime("%^b")}.xlsx"
 end
@@ -66,17 +85,19 @@ def save_to_workbook(name, data, date)
 		ws = workbook["Sheet1"]
 		ws.sheet_name = sheet_name
 	else
-		unless File.exist? file_name
-      puts "File #{file_name} doesn't exists"
+		unless File.exist?(full_path file_name)
+      puts "First check, file #{file_name} doesn't exists, try to download"
 			download_file(file_name)	
 		end
-		unless File.exist? file_name
+    puts "File: #{file_name} exist? #{File.exists? file_name}"
+		unless File.exist?(full_path file_name)
+      puts "Download #{file_name} failed, creating new file in the middle of the month"
 			#Should not need to recreate file in the middle of the month
 			workbook = RubyXL::Workbook.new
 			ws = workbook["Sheet1"]
 			ws.sheet_name = sheet_name
 		else
-			workbook = RubyXL::Parser.parse(file_name)
+			workbook = RubyXL::Parser.parse(full_path(file_name))
 		end
 	end
   
@@ -145,7 +166,7 @@ def save_to_workbook(name, data, date)
 	workbook.write(full_path file_name)
 end
 
-
+#
 #till_today.each{ |d|
 #  
 #  data = get_option_data_by_date( :hsi, d)
@@ -154,7 +175,8 @@ end
 #  data = get_option_data_by_date( :hhi, d)
 #  save_to_workbook(:hhi, data, d)
 #}
-#
+
+# Save one day
 #["hsi", "hhi"].each { |o|
 #  d = Date.new(2015, 6, 26)
 #  data = get_option_data_by_date(o, d)
@@ -163,11 +185,14 @@ end
 #  File.delete option_xlsx_filename o
 #}
 
+#file_name = option_xlsx_filename(:hsi)
+#download_file(file_name)	
 
+#puts "CWD is: #{system 'pwd'}"
 ["hsi", "hhi"].each { |o|
   Date.today.strftime("%y%m%d")
   data = get_option_data o
   save_to_workbook(o, data, Date.today)
   upload_file option_xlsx_filename o    
-  File.delete option_xlsx_filename o
+  File.delete(full_path option_xlsx_filename o)
 }

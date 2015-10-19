@@ -7,8 +7,8 @@ DROPBOX_UPLOADER="$SCRIPT_ROOT/dropbox_uploader.sh"
 cd $SCRIPT_ROOT
 
 echo "Uploading files"
-TODAY="150119"
-NOW="2015-01-19"
+TODAY="150630"
+NOW="2015-06-30"
 
 wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsif$TODAY.zip"
 wget -w 3 -t 3 "https://www.hkex.com.hk/eng/stat/dmstat/dayrpt/hsio$TODAY.zip"
