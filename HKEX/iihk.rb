@@ -166,15 +166,18 @@ def save_to_workbook(name, data, date, period)
 	workbook.write(full_path file_name)
 end
 
-#
-#till_today.each{ |d|
-#  
-#  data = get_option_data_by_date(:hsi, d)
-#  save_to_workbook(:hsi, data, d)
-#
-#  data = get_option_data_by_date(:hhi, d)
-#  save_to_workbook(:hhi, data, d)
-#}
+#till Today
+#till_today.each do |d|
+#  ["hsi", "hhi"].each do |o|
+#    periods(d).each do |p|
+#      data = get_option_data_by_date(o, d, p)
+#      save_to_workbook(o, data, d, p)
+#      file_name = option_xlsx_filename(o, p)
+#      upload_file file_name
+#      File.delete(full_path file_name)
+#    end
+#  end
+#end
 
 # Save one day
 #["hsi", "hhi"].each { |o|
