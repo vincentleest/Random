@@ -50,9 +50,9 @@ do
   $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/$i$TODAY.zip" "$NOW/"
 done
 
-wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/HSI_$HSI_DATE.xls"
-wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hscei/HSCEI_$HSI_DATE.xls"
-wget -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/Index_Performance_Summary_$HSI_DATE.xls"
+wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/HSI_$HSI_DATE.xls"
+wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4'-w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hscei/HSCEI_$HSI_DATE.xls"
+wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4'-w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/Index_Performance_Summary_$HSI_DATE.xls"
 
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/archive$TODAY.zip" "$NOW/"
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HSI_$HSI_DATE.xls" "$NOW/"
