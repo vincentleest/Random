@@ -4,9 +4,11 @@ SCRIPT_ROOT="$HOME/workspace/Random/HKEX/"
 DROPBOX_UPLOADER="$SCRIPT_ROOT/dropbox_uploader.sh"
 
 NOW=$(date +"%F")
+TODAY=$(date +"%y%m%d")
 HSI_DATE=$(date +"%-d%b%y")
 FILE_NAMES=(HSI HHI HKB TCH HEX CHT XCC)
 ZIP_FILE_NAMES=(hsif hsio hhif hhio stock dqe)
+USER_AGENT_STRING='Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4'
 
 cd $SCRIPT_ROOT
 echo "Fetching Data"
@@ -27,7 +29,6 @@ done
 echo "Finisehd Formatting"
 
 echo "Uploading files"
-TODAY=$(date +"%y%m%d")
 #moving files around
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" mkdir $NOW 
 
@@ -39,6 +40,7 @@ done
 echo "Upload completed, cleaning up"
 rm *.csv
 
+#Create Archive
 mkdir "archive$TODAY"
 mv *.txt "archive$TODAY/"
 zip -r "archive$TODAY.zip" "archive$TODAY"
@@ -50,14 +52,16 @@ do
   $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/$i$TODAY.zip" "$NOW/"
 done
 
-wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/HSI_$HSI_DATE.xls"
-wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4'-w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hscei/HSCEI_$HSI_DATE.xls"
-wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4'-w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/Index_Performance_Summary_$HSI_DATE.xls"
-
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/archive$TODAY.zip" "$NOW/"
+rm *.zip
+
+# HSI.com download
+wget -U $USER_AGENT_STRING -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/HSI_$HSI_DATE.xls"
+wget -U $USER_AGENT_STRING -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hscei/HSCEI_$HSI_DATE.xls"
+wget -U $USER_AGENT_STRING -w 3 -t 3 "http://www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/Index_Performance_Summary_$HSI_DATE.xls"
+
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HSI_$HSI_DATE.xls" "$NOW/"
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/HSCEI_$HSI_DATE.xls" "$NOW/"
 $DROPBOX_UPLOADER -f "$HOME/.dropbox_uploader" upload "$SCRIPT_ROOT/Index_Performance_Summary_$HSI_DATE.xls" "$NOW/"
 
-rm *.zip
 rm *.xls
