@@ -170,11 +170,12 @@ end
 #till_today.each do |d|
 #  ["hsi", "hhi"].each do |o|
 #    periods(d).each do |p|
+#    #periods(Date.today).each do |p|
 #      data = get_option_data_by_date(o, d, p)
 #      save_to_workbook(o, data, d, p)
 #      file_name = option_xlsx_filename(o, p)
 #      upload_file file_name
-#      File.delete(full_path file_name)
+#    #  File.delete(full_path file_name)
 #    end
 #  end
 #end
@@ -191,18 +192,18 @@ end
 #file_name = option_xlsx_filename(:hsi)
 #download_file(file_name)	
 
-#puts "CWD is: #{system 'pwd'}"
+##puts "CWD is: #{system 'pwd'}"
 ["hsi", "hhi"].each do |o|
   periods(Date.today).each do |p|
     data = get_option_data_by_date(o, Date.today, p)
     save_to_workbook(o, data, Date.today, p)
     file_name = option_xlsx_filename(o, p)
     upload_file file_name
-    File.delete(full_path file_name)
+#    File.delete(full_path file_name)
   end
 end
    
-#Date.new(2015,12,29).step(Date.new(2016,12,31)).each do |d|
+#Date.new(2017,1,28).step(Date.new(2017,2,18)).each do |d|
 #  if expiry_day? d
 #    puts "#{d} is an expiry day"
 #  end
